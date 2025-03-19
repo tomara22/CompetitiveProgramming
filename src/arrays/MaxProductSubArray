@@ -1,0 +1,38 @@
+public static void calculateMaxProductSubArraySum(int[] arr){
+        int product = 1;
+        int temp_product = 1;
+        int w_start = 0;
+        int w_end = 0;
+
+
+        while(w_end<arr.length){
+            if(arr[w_end] == 0){
+
+                continue;
+            }
+            if(arr.length==1 & arr[0]<0){
+                product = arr[0];
+                break;
+            }
+
+            temp_product = arr[w_end] * temp_product;;
+            if(arr[w_end]<0){
+                if(temp_product < product) {
+                    w_end++;
+                }
+                else {
+                    product = temp_product;
+                    temp_product = temp_product/arr[w_start];
+                    w_start++;
+                    w_end++;
+                }
+            }else{
+                product = temp_product;
+                w_end++;
+            }
+
+        }
+
+        System.out.println("Product: "+product);
+
+    }
